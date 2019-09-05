@@ -2,6 +2,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 
+var userRoutes = require('./routes/user');
+
 // parser Json
 app.use(bodyParser.urlencoded({extended:false}));
 //parsear a json
@@ -16,8 +18,8 @@ app.use((req,res,next)=>{
     next();
 });
 // api rest endpoints
-app.get('/helloWorld',function(req,res){
-    res.status(200).send({message:'Hello world'});
-});
+
+app.use('/api/user', userRoutes); //estructura api restfull
+
 
 module.exports = app;
